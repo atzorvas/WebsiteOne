@@ -17,6 +17,6 @@ module EventHelper
 
     return nil if time.nil?
 
-    time.strftime("%F at %I:%M%p")
+    time.getutc.strftime("%F at %I:%M%p %Z")
   end
 end
