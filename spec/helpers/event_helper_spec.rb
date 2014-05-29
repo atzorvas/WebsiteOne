@@ -21,4 +21,13 @@ describe EventHelper do
     result = helper.current_occurrence_time(nested_value)
     expect(result).to match '2014-03-09 at 11:00PM'
   end
+
+  it 'extract event time to utc' do
+    ocurrence = Time.local(2014,"mar",10,1,0,0)
+    time = IceCube::Occurrence.new(ocurrence)
+    event = mock_model(Event, name: 'DailyScrum', category: 'Scrum')
+    nested_value = {:event => event, :time => time}
+    result = helper.current_occurrence_time(nested_value)
+    expect(result).to match '2014-03-09 at 11:00PM UTC'
+  end
 end
